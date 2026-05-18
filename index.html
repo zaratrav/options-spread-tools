@@ -1,41 +1,608 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="google-site-verification" content="PkLa_ViOo6FAHpvh8SacceMb95o9tePRdrqLNBz9X1M" />
-<title>Options Spread Calculators | Strategies & Payoff Tools</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="PkLa_ViOo6FAHpvh8SacceMb95o9tePRdrqLNBz9X1M" />
+    <title>Options Spread Calculator: Bull Call, Bull Put, Straddle & Butterfly Spreads</title>
+    <meta name="description" content="Free options spread calculator. Analyze bull call spreads, bull put spreads, straddles, and butterfly spreads. Calculate max profit, max loss, breakeven, and profit curves.">
+    <meta name="keywords" content="options spread calculator, bull call spread calculator, bull put spread calculator, straddle calculator, butterfly spread calculator, options strategy calculator">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <header class="header">
+        <div class="container">
+            <h1>Options Spread Calculator</h1>
+            <p class="subtitle">Analyze profit/loss for bull calls, bull puts, straddles, butterflies & more</p>
+        </div>
+    </header>
 
-<h1>Options Spread Strategy Calculators</h1>
+    <main>
+        <section class="intro">
+            <div class="container">
+                <h2>Master Options Spreads with Profit Calculators</h2>
+                <p>
+                    Options spreads let you profit from different market scenarios: directional moves, volatility spikes, or time decay. 
+                    But managing risk requires understanding your max profit, max loss, and breakeven points. These calculators help you 
+                    analyze spreads before you trade, so you can manage risk and plan position sizing.
+                </p>
+            </div>
+        </section>
 
-<p>Analyze complex options strategies including spreads, condors, straddles, and hedging setups.</p>
+        <!-- FEATURED CALCULATOR: BULL CALL SPREAD -->
+        <section class="featured-tool">
+            <div class="container">
+                <h2>Bull Call Spread Calculator</h2>
+                <p>
+                    A bull call spread is a bullish strategy: buy a call at a lower strike, sell a call at a higher strike. 
+                    Lower cost than buying a call alone, but capped profit. Perfect for directional trades with defined risk.
+                </p>
 
-<div class="card">
-<ul>
-<li><a href="covered-call/index.html">Covered Call</a></li>
-<li><a href="cash-secured-put/index.html">Cash Secured Put</a></li>
-<li><a href="iron-condor/index.html">Iron Condor</a></li>
-<li><a href="iron-butterfly/index.html">Iron Butterfly</a></li>
-<li><a href="bull-call/index.html">Bull Call Spread</a></li>
-<li><a href="bear-put/index.html">Bear Put Spread</a></li>
-<li><a href="bull-put/index.html">Bull Put Spread</a></li>
-<li><a href="bear-call/index.html">Bear Call Spread</a></li>
-<li><a href="straddle/index.html">Long Straddle</a></li>
-<li><a href="strangle/index.html">Long Strangle</a></li>
-<li><a href="calendar/index.html">Calendar Spread</a></li>
-<li><a href="diagonal/index.html">Diagonal Spread</a></li>
-<li><a href="butterfly/index.html">Butterfly Spread</a></li>
-<li><a href="condor/index.html">Condor Spread</a></li>
-<li><a href="collar/index.html">Collar Strategy</a></li>
-<li><a href="protective-put/index.html">Protective Put</a></li>
-<li><a href="leaps/index.html">LEAPS Calculator</a></li>
-<li><a href="debit/index.html">Debit Spread</a></li>
-<li><a href="credit/index.html">Credit Spread</a></li>
-<li><a href="wheel/index.html">Wheel Strategy</a></li>
-</ul>
-</div>
+                <div class="calculator spreads-calc">
+                    <div class="calc-section">
+                        <h3>Bull Call Spread Setup</h3>
+                        <p class="section-hint">Enter strike prices and premiums for long and short calls</p>
 
+                        <div class="inputs-grid">
+                            <div class="input-group">
+                                <label>Stock Price (current)</label>
+                                <input type="number" id="stockPrice" placeholder="100.00" value="100" step="0.01">
+                            </div>
+                            <div class="input-group">
+                                <label>Implied Volatility (%)</label>
+                                <input type="number" id="impliedVolatility" placeholder="25" value="25" min="1" step="0.1">
+                                <span class="input-hint">Typical: 20-30%</span>
+                            </div>
+                            <div class="input-group">
+                                <label>Days to Expiration</label>
+                                <input type="number" id="daysToExp" placeholder="30" value="30" min="1" step="1">
+                            </div>
+                            <div class="input-group">
+                                <label>Risk-Free Rate (%)</label>
+                                <input type="number" id="riskFreeRate" placeholder="5" value="5" min="0" step="0.1">
+                                <span class="input-hint">Annual rate: ~5%</span>
+                            </div>
+                        </div>
+
+                        <div class="spread-legs">
+                            <h4>Long Call (Buy)</h4>
+                            <div class="inputs-grid">
+                                <div class="input-group">
+                                    <label>Strike Price</label>
+                                    <input type="number" id="longStrike" placeholder="100.00" value="100" step="0.01">
+                                </div>
+                                <div class="input-group">
+                                    <label>Premium Paid ($)</label>
+                                    <input type="number" id="longPremium" placeholder="2.50" value="2.50" step="0.01" min="0">
+                                </div>
+                            </div>
+
+                            <h4>Short Call (Sell)</h4>
+                            <div class="inputs-grid">
+                                <div class="input-group">
+                                    <label>Strike Price</label>
+                                    <input type="number" id="shortStrike" placeholder="105.00" value="105" step="0.01">
+                                </div>
+                                <div class="input-group">
+                                    <label>Premium Received ($)</label>
+                                    <input type="number" id="shortPremium" placeholder="1.00" value="1.00" step="0.01" min="0">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="quick-scenarios">
+                            <p class="template-label">Quick scenarios:</p>
+                            <button class="scenario-btn" onclick="loadScenario('bullish')">Bullish (Wide Spread)</button>
+                            <button class="scenario-btn" onclick="loadScenario('moderate')">Moderate Bullish</button>
+                            <button class="scenario-btn" onclick="loadScenario('conservative')">Conservative</button>
+                        </div>
+
+                        <button class="calculate-btn" onclick="calculateBullCall()">Calculate Payoff</button>
+                    </div>
+
+                    <!-- RESULTS -->
+                    <div class="calc-results" id="bullCallResults" style="display: none;">
+                        <h3>Bull Call Spread Analysis</h3>
+
+                        <div class="results-grid">
+                            <div class="result-card">
+                                <span class="metric-label">Net Debit</span>
+                                <span class="metric-display" id="netDebit">$0.00</span>
+                                <span class="metric-hint">Cost to enter</span>
+                            </div>
+                            <div class="result-card">
+                                <span class="metric-label">Max Profit</span>
+                                <span class="metric-display green" id="maxProfit">$0.00</span>
+                                <span class="metric-hint" id="maxProfitStrike"></span>
+                            </div>
+                            <div class="result-card">
+                                <span class="metric-label">Max Loss</span>
+                                <span class="metric-display danger" id="maxLoss">$0.00</span>
+                                <span class="metric-hint">Below long strike</span>
+                            </div>
+                            <div class="result-card">
+                                <span class="metric-label">Breakeven</span>
+                                <span class="metric-display" id="breakeven">$0.00</span>
+                                <span class="metric-hint">At expiration</span>
+                            </div>
+                        </div>
+
+                        <div class="metrics-grid">
+                            <div class="metric-box">
+                                <h4>Risk/Reward Ratio</h4>
+                                <p id="riskReward"></p>
+                            </div>
+                            <div class="metric-box">
+                                <h4>ROI on Risk</h4>
+                                <p id="roiRisk"></p>
+                            </div>
+                            <div class="metric-box">
+                                <h4>Probability of Profit (est.)</h4>
+                                <p id="probProfit"></p>
+                            </div>
+                            <div class="metric-box">
+                                <h4>Profit at Current Price</h4>
+                                <p id="currentProfit"></p>
+                            </div>
+                        </div>
+
+                        <div class="greeks-section">
+                            <h4>Greeks Analysis</h4>
+                            <p class="greeks-hint">Greeks measure option sensitivity to different factors at current stock price:</p>
+                            <div class="greeks-grid">
+                                <div class="greek-card">
+                                    <span class="greek-label">Delta (Δ)</span>
+                                    <span class="greek-value" id="deltaValue">0.00</span>
+                                    <span class="greek-hint">Directional exposure. Range: -1 to +1</span>
+                                </div>
+                                <div class="greek-card">
+                                    <span class="greek-label">Gamma (Γ)</span>
+                                    <span class="greek-value" id="gammaValue">0.00</span>
+                                    <span class="greek-hint">Delta change rate. Higher gamma = more risk</span>
+                                </div>
+                                <div class="greek-card">
+                                    <span class="greek-label">Theta (Θ)</span>
+                                    <span class="greek-value" id="thetaValue">0.00</span>
+                                    <span class="greek-hint">Time decay per day. Positive = good for spreads</span>
+                                </div>
+                                <div class="greek-card">
+                                    <span class="greek-label">Vega (ν)</span>
+                                    <span class="greek-value" id="vegaValue">0.00</span>
+                                    <span class="greek-hint">IV sensitivity per 1% change</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="chart-section">
+                            <h4>Profit/Loss Curve at Expiration</h4>
+                            <canvas id="bullCallChart"></canvas>
+                        </div>
+
+                        <div class="payoff-table">
+                            <h4>Payoff Table</h4>
+                            <table id="payoffTable">
+                                <thead>
+                                    <tr>
+                                        <th>Stock Price</th>
+                                        <th>Long Call Value</th>
+                                        <th>Short Call Value</th>
+                                        <th>Spread P&L</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="payoffBody">
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="strategy-tips">
+                            <h4>📋 Strategy Tips</h4>
+                            <ul id="strategyTips"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- OTHER SPREAD CALCULATORS -->
+        <section class="other-spreads">
+            <div class="container">
+                <h2>Other Options Spread Calculators</h2>
+                <p>Master multiple spread strategies with dedicated calculators for each approach. Each strategy has unique risk/reward profiles:</p>
+
+                <div class="spreads-grid">
+                    <div class="spread-card featured-card">
+                        <h3>📊 Bull Put Spread Calculator</h3>
+                        <p>Short a put at higher strike, buy a put at lower strike. Profit from stock staying above short strike.</p>
+                        <div class="spread-metrics">
+                            <div class="metric-small">
+                                <span class="label">Max Profit</span>
+                                <span class="value">Credit Received</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Max Loss</span>
+                                <span class="value">Width - Credit</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Market Outlook</span>
+                                <span class="value">Bullish</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Theta</span>
+                                <span class="value">Positive ✓</span>
+                            </div>
+                        </div>
+                        <div class="spread-details">
+                            <p><strong>Why use it:</strong> Collect premium upfront, profit from time decay, defined risk</p>
+                            <p><strong>When to trade:</strong> High IV environments, bullish bias, theta-positive strategies</p>
+                            <p><strong>Risk level:</strong> Moderate (credit spread, limited loss)</p>
+                        </div>
+                        <a href="bull-put-spread/" class="spread-link primary">Use Bull Put Spread Calculator →</a>
+                    </div>
+
+                    <div class="spread-card">
+                        <h3>🎯 Long Straddle Calculator</h3>
+                        <p>Buy both a call and put at same strike. Profit from any large move in either direction.</p>
+                        <div class="spread-metrics">
+                            <div class="metric-small">
+                                <span class="label">Max Profit</span>
+                                <span class="value">Unlimited ↑ / Limited ↓</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Max Loss</span>
+                                <span class="value">Total Premium Paid</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Market Outlook</span>
+                                <span class="value">Volatile (either way)</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Theta</span>
+                                <span class="value">Negative ✗</span>
+                            </div>
+                        </div>
+                        <div class="spread-details">
+                            <p><strong>Why use it:</strong> Profit from big moves before earnings or events, unlimited upside</p>
+                            <p><strong>When to trade:</strong> Pre-earnings, FOMC decisions, FDA approvals, volatility spikes</p>
+                            <p><strong>Risk level:</strong> High (theta works against you, need big move)</p>
+                        </div>
+                        <a href="long-straddle/" class="spread-link">Use Straddle Calculator →</a>
+                    </div>
+
+                    <div class="spread-card">
+                        <h3>🦋 Butterfly Spread Calculator</h3>
+                        <p>Buy wide, sell middle. Profit if stock stays near middle strike at expiration.</p>
+                        <div class="spread-metrics">
+                            <div class="metric-small">
+                                <span class="label">Max Profit</span>
+                                <span class="value">Middle Width - Debit</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Max Loss</span>
+                                <span class="value">Debit Paid</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Market Outlook</span>
+                                <span class="value">Neutral/Bullish</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Theta</span>
+                                <span class="value">Positive ✓</span>
+                            </div>
+                        </div>
+                        <div class="spread-details">
+                            <p><strong>Why use it:</strong> Low cost, defined risk, high probability, theta positive</p>
+                            <p><strong>When to trade:</strong> Range-bound markets, mean reversion, low volatility periods</p>
+                            <p><strong>Risk level:</strong> Low (small debit, high probability of max profit)</p>
+                        </div>
+                        <a href="butterfly-spread/" class="spread-link">Use Butterfly Spread Calculator →</a>
+                    </div>
+
+                    <div class="spread-card">
+                        <h3>🔄 Iron Condor Calculator</h3>
+                        <p>Bull call spread + Bull put spread. Profit if stock stays between call and put strikes.</p>
+                        <div class="spread-metrics">
+                            <div class="metric-small">
+                                <span class="label">Max Profit</span>
+                                <span class="value">Total Credit Received</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Max Loss</span>
+                                <span class="value">Larger of Two Spreads</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Market Outlook</span>
+                                <span class="value">Neutral/Range-Bound</span>
+                            </div>
+                            <div class="metric-small">
+                                <span class="label">Theta</span>
+                                <span class="value">Positive ✓</span>
+                            </div>
+                        </div>
+                        <div class="spread-details">
+                            <p><strong>Why use it:</strong> Double theta, high probability income strategy, defined risk on both sides</p>
+                            <p><strong>When to trade:</strong> Neutral markets, high IV, regular income generation, portfolio hedging</p>
+                            <p><strong>Risk level:</strong> Moderate (4 legs, but defined risk)</p>
+                        </div>
+                        <a href="iron-condor/" class="spread-link">Use Iron Condor Calculator →</a>
+                    </div>
+                </div>
+
+                <div class="comparison-section">
+                    <h3>Quick Spread Comparison</h3>
+                    <table class="spread-comparison-table">
+                        <thead>
+                            <tr>
+                                <th>Strategy</th>
+                                <th>Market View</th>
+                                <th>Max Profit</th>
+                                <th>Max Loss</th>
+                                <th>Theta</th>
+                                <th>Best When</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Bull Call Spread</strong></td>
+                                <td>Bullish (Moderate)</td>
+                                <td>Limited</td>
+                                <td>Debit Paid</td>
+                                <td>Slight +</td>
+                                <td>IV Low, Directional</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Bull Put Spread</strong></td>
+                                <td>Bullish (Moderate)</td>
+                                <td>Credit Received</td>
+                                <td>Width - Credit</td>
+                                <td>Strong +</td>
+                                <td>IV High, Income</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Long Straddle</strong></td>
+                                <td>Volatile (Both Ways)</td>
+                                <td>Unlimited</td>
+                                <td>Premium Paid</td>
+                                <td>-</td>
+                                <td>Pre-Earnings</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Butterfly Spread</strong></td>
+                                <td>Neutral/Range</td>
+                                <td>Middle Width - Debit</td>
+                                <td>Debit Paid</td>
+                                <td>Strong +</td>
+                                <td>Mean Reversion</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Iron Condor</strong></td>
+                                <td>Neutral (Strong)</td>
+                                <td>Total Credit</td>
+                                <td>Larger Spread</td>
+                                <td>Strong +</td>
+                                <td>Neutral Markets</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- EDUCATIONAL GUIDE -->
+        <section class="guide">
+            <div class="container">
+                <h2>Understanding Options Spreads</h2>
+
+                <h3>What Are Options Spreads?</h3>
+                <p>
+                    A spread is an options strategy using 2+ options simultaneously. By buying and selling options at different strikes, 
+                    you can reduce cost, define risk, and tailor payoff profiles to your market outlook. Spreads are ideal for directional 
+                    trades with known risk.
+                </p>
+
+                <h3>Types of Options Spreads</h3>
+                <div class="spread-types-grid">
+                    <div class="type-card">
+                        <h4>📍 Vertical Spreads</h4>
+                        <p><strong>Same expiration, different strikes:</strong> Bull calls, bull puts, bear calls, bear puts.</p>
+                        <p><strong>Why:</strong> Reduce cost, define max loss, cap max profit.</p>
+                        <p><strong>Best for:</strong> Directional trades with limited capital.</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>🎯 Horizontal Spreads</h4>
+                        <p><strong>Same strike, different expirations:</strong> Calendar spreads, diagonal spreads.</p>
+                        <p><strong>Why:</strong> Profit from time decay and volatility changes.</p>
+                        <p><strong>Best for:</strong> Theta decay strategies, volatility plays.</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>🦋 Butterfly Spreads</h4>
+                        <p><strong>Three strikes: wide, middle, wide:</strong> Buy/sell combinations.</p>
+                        <p><strong>Why:</strong> Low-cost strategy with defined risk.</p>
+                        <p><strong>Best for:</strong> Mean-reversion, range-bound markets.</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>🔄 Iron Condors</h4>
+                        <p><strong>Four legs: 2 call spreads + 2 put spreads:</strong> Full income strategy.</p>
+                        <p><strong>Why:</strong> Profit from staying in range, high theta.</p>
+                        <p><strong>Best for:</strong> Neutral outlook, income generation.</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>📊 Straddles/Strangles</h4>
+                        <p><strong>Same strike (straddle) or different strikes (strangle):</strong> Volatility plays.</p>
+                        <p><strong>Why:</strong> Profit from large moves in either direction.</p>
+                        <p><strong>Best for:</strong> Earnings, high IV environments.</p>
+                    </div>
+                    <div class="type-card">
+                        <h4>🛡️ Hedges</h4>
+                        <p><strong>Protective puts, collars, married puts:</strong> Insurance strategies.</p>
+                        <p><strong>Why:</strong> Limit downside while keeping upside potential.</p>
+                        <p><strong>Best for:</strong> Protecting stock positions from losses.</p>
+                    </div>
+                </div>
+
+                <h3>Bull Call Spread: Deep Dive</h3>
+                <div class="strategy-detail">
+                    <h4>Setup</h4>
+                    <ul>
+                        <li><strong>Buy:</strong> Call at lower strike (ATM or ITM)</li>
+                        <li><strong>Sell:</strong> Call at higher strike (OTM)</li>
+                        <li><strong>Same expiration</strong></li>
+                    </ul>
+
+                    <h4>Profit/Loss Profile</h4>
+                    <ul>
+                        <li><strong>Max Profit:</strong> (Short Strike - Long Strike) - Net Debit</li>
+                        <li><strong>Max Loss:</strong> Net Debit Paid</li>
+                        <li><strong>Breakeven:</strong> Long Strike + Net Debit</li>
+                    </ul>
+
+                    <h4>When to Use</h4>
+                    <ul>
+                        <li>You're <strong>moderately bullish</strong> (expect stock to rise, but uncertain how much)</li>
+                        <li>You want to <strong>reduce cost</strong> vs. buying a call alone</li>
+                        <li>You're okay with <strong>capped profit</strong> to reduce risk</li>
+                        <li>You want <strong>defined risk</strong> (know max loss upfront)</li>
+                    </ul>
+
+                    <h4>Advantages</h4>
+                    <ul>
+                        <li><strong>Lower cost:</strong> Short call offsets long call premium</li>
+                        <li><strong>Defined risk:</strong> Max loss = debit paid</li>
+                        <li><strong>Favorable risk/reward:</strong> Max profit often 2-3x risk</li>
+                        <li><strong>Theta positive:</strong> Time decay helps if stock doesn't rise much</li>
+                    </ul>
+
+                    <h4>Disadvantages</h4>
+                    <ul>
+                        <li><strong>Capped profit:</strong> Can't profit beyond short strike</li>
+                        <li><strong>Limited upside:</strong> If stock soars, you miss gains</li>
+                        <li><strong>Requires 2 fills:</strong> Need both legs to execute</li>
+                        <li><strong>Less margin ROI:</strong> Margin cost can eat into profits</li>
+                    </ul>
+                </div>
+
+                <h3>Common Spread Mistakes</h3>
+                <div class="mistakes-grid">
+                    <div class="mistake-card">
+                        <h4>❌ Wrong Strike Selection</h4>
+                        <p>
+                            Buying ITM, selling only slightly OTM = tiny max profit, large debit. Better: buy ATM, sell more OTM for higher ROI.
+                        </p>
+                    </div>
+                    <div class="mistake-card">
+                        <h4>❌ Ignoring Time Decay</h4>
+                        <p>
+                            Short options decay faster than long options. But if stock drops below long strike, both decay and you lose debit.
+                        </p>
+                    </div>
+                    <div class="mistake-card">
+                        <h4>❌ No Exit Plan</h4>
+                        <p>
+                            Let spread expire 0 DTE = max slippage. Close at 50% max profit = better management, lock in gains early.
+                        </p>
+                    </div>
+                    <div class="mistake-card">
+                        <h4>❌ Not Accounting for Bid-Ask</h4>
+                        <p>
+                            Wide bid-ask spreads kill profitability. Use spreads with liquid options. Check actual entry/exit prices.
+                        </p>
+                    </div>
+                    <div class="mistake-card">
+                        <h4>❌ Over-Leveraging</h4>
+                        <p>
+                            Risk 100% of account on one spread. Position size: risk max 2% per trade to survive drawdowns.
+                        </p>
+                    </div>
+                    <div class="mistake-card">
+                        <h4>❌ Ignoring Implied Volatility</h4>
+                        <p>
+                            High IV = expensive premiums. Sell spreads when IV high (credit spreads). Buy spreads when IV low (debit spreads).
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQS -->
+        <section class="faqs">
+            <div class="container">
+                <h2>Frequently Asked Questions</h2>
+
+                <div class="faq-item">
+                    <h3>What's the difference between a spread and a straddle?</h3>
+                    <p>
+                        A <strong>spread</strong> uses options at different strikes (bull call: buy 100 call, sell 105 call). 
+                        A <strong>straddle</strong> uses options at the same strike (buy 100 call + buy 100 put). 
+                        Spreads are directional; straddles profit from large moves in either direction.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>How accurate is the breakeven calculation?</h3>
+                    <p>
+                        Breakeven is calculated assuming you hold to expiration. In reality, you can close early for partial profit. 
+                        The formula is: Long Strike + Net Debit (for bull calls). This is accurate at expiration.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What if I close the spread before expiration?</h3>
+                    <p>
+                        This calculator shows payoff at expiration. Before expiration, the spread value changes based on: stock price movement, 
+                        time decay, and IV changes. Close early if you hit 50% max profit (better risk management).
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>What's the "Greeks" for spreads?</h3>
+                    <p>
+                        Delta measures directional exposure. Theta measures time decay (positive for spreads = good). 
+                        Vega measures IV sensitivity. This calculator shows basic P&L; for Greeks, use advanced platforms (ThinkorSwim, OptionStrat).
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>How much margin do spreads require?</h3>
+                    <p>
+                        Margin = max loss of the spread (usually much less than naked calls). 
+                        Bull call spread with $150 max loss requires $150-$300 margin (depends on broker). Always check your broker's margin requirements.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>When should I close a spread?</h3>
+                    <p>
+                        Close at 50% max profit (lock in gains), or at -50% max loss (cut losses). 
+                        Let it expire only if you're at max profit. Closing early = better risk management and avoiding 0 DTE slippage.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Bull call vs bull put spread: which is better?</h3>
+                    <p>
+                        Bull call = debit (you pay upfront). Bull put = credit (you receive upfront). 
+                        Bull calls are better if IV is low (cheap premiums). Bull puts are better if IV is high (expensive premiums). 
+                        Choose based on market conditions, not just preference.
+                    </p>
+                </div>
+
+                <div class="faq-item">
+                    <h3>Can spreads lose more than max loss?</h3>
+                    <p>
+                        No, if you hold to expiration. Max loss is defined upfront. But if you close before expiration and market moves against you, 
+                        you can lose more (because the spread value changes). Always close at defined max loss limit.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Options Spread Calculator. Trade spreads with confidence.</p>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
